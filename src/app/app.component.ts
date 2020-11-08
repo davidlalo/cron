@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'cron';
+  public submenu : any;
+  public valor : string;
+
+  sub(numero:any){
+    this.submenu = numero;
+  }
+
+  val(value:string){
+    this.valor = value;
+  }
 }

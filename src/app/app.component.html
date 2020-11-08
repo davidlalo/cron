@@ -1,2 +1,4 @@
 <app-cabecera></app-cabecera>
-<app-menu></app-menu>
+<app-menu (submenu)="sub($event)"></app-menu>
+<app-submenu [submenu]="submenu" (valor)="val($event)"></app-submenu>
+<router-outlet></router-outlet>
