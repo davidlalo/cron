@@ -6,7 +6,7 @@ import { OrientacionComponent } from './Views/orientacion/orientacion.component'
 import { MapasComponent } from './Views/mapas/mapas.component';
 import { RaidComponent } from './Views/raid/raid.component';
 import { ClubComponent } from './Views/club/club.component';
-import { NoticiasComponent } from './Views/noticias/noticias.component';
+import { ListadonoticiasComponent } from './Views/listadonoticias/listadonoticias.component';
 import { EnlacesComponent } from './Views/enlaces/enlaces.component';
 import { AdministracionComponent } from './Views/administracion/administracion.component';
 
@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'mapas', component: MapasComponent },
   { path: 'raid', component: RaidComponent },
   { path: 'club', component: ClubComponent },
-  { path: 'noticias', component: NoticiasComponent },
+  { path: 'noticias', component: ListadonoticiasComponent },
   { path: 'enlaces', component: EnlacesComponent },
   { path: 'administracion', component: AdministracionComponent }
 ];

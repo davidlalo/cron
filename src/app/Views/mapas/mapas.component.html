@@ -1,1 +1,12 @@
-<p>mapas works!</p>
+<div *ngIf="this.valor==='principal'">
+    <app-principal (valor)="val($event)"></app-principal>
+</div>
+<div *ngIf="this.valor==='listado'">
+    <app-listado></app-listado>
+</div>
+<div *ngIf="this.valor==='solicitud'">
+    <app-solicitud></app-solicitud>
+</div>
+<div *ngIf="this.valor==='colemapa'">
+    <app-colemapa></app-colemapa>
+</div>

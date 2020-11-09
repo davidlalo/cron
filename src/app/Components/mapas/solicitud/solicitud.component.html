@@ -1,0 +1,82 @@
+<h1>SOLICITUD DE MAPA</h1>
+<div class="example-container">
+    <div [formGroup]="solicitudForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Mapa</mat-label>
+            <mat-select formControlName='mapa' required>
+              <mat-option value="option">Option</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Solicitante</mat-label>
+            <input matInput [formControl]="" formControlName="solicitante" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Responsable</mat-label>
+            <input matInput [formControl]="" formControlName="responsable" required  matTooltip="Si el solicitante es una entidad indicar la persona responsable">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput [formControl]="" formControlName="email" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Teléfono</mat-label>
+            <input matInput [formControl]="" formControlName="telefono" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Actividad</mat-label>
+            <input matInput [formControl]="" formControlName="actividad" required>
+        </mat-form-field>
+        <br>      
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha inicio</mat-label>
+            <input matInput [matDatepicker]="fini" formControlName="fini" required>
+            <mat-datepicker-toggle matSuffix [for]="fini"></mat-datepicker-toggle>
+            <mat-datepicker #fini></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha fin</mat-label>
+            <input matInput [matDatepicker]="ffin" formControlName="ffin" required>
+            <mat-datepicker-toggle matSuffix [for]="ffin"></mat-datepicker-toggle>
+            <mat-datepicker #ffin></mat-datepicker>
+        </mat-form-field>
+        <br>       
+        <mat-form-field appearance="fill">
+            <mat-label>Nº de participantes</mat-label>
+            <input matInput [formControl]="" formControlName="numero" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Formato</mat-label>
+            <mat-select formControlName='formato' required>
+              <mat-option value=".JPG">.JPG</mat-option>
+              <mat-option value=".PDF">.PDF</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Otros datos</mat-label>
+            <textarea matInput formControlName='otros'></textarea>
+        </mat-form-field>
+
+  <mat-divider></mat-divider>
+  <mat-checkbox class="example-margin" formControlName="acepto">
+      MEDIANTE ESTA SOLICITUD SOY CONSCIENTE Y ACEPTO LAS SIGUIENTES CONDICIONES GENERALES:
+  </mat-checkbox>
+</div>
+</div>
+		
+
+		<ul>
+
+			<li>Sólo se permite la reproducción del archivo recibido para los usos especificados y en la fecha indicada en el permiso.</li>
+
+			<li>Se prohíbe la copia, modificación y distribución del archivo. Cualquier modificación de la obra cartográfica ha de ser realizada por técnicos del CRON.</li>
+
+			<li>La posesión y uso del mapa no implica el derecho de acceso y uso de los terrenos representados en el mismo.</li>
+
+            <li>En cumplimiento de lo establecido en la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal, le informamos que sus datos quedarán almacenados en un fichero, cuyo responsable es la Entidad Deportiva CLUB RIOJANO DE ORIENTACION EN LA NATURALEZA, debido a nuestra actividad deportiva, así como para gestionar el uso de los mapas y para mantenerle informado de las novedades relacionadas con el ámbito de nuestra actividad. Así mismo le informamos que usted puede ejercitar sus derechos de acceso, rectificación, cancelación y oposición dirigiéndose por correo electrónico a info@orientacron.es o por escrito a C/General Vara de Rey, 33 (Establecimiento comercial "La abundancia") 26002 Logroño (La Rioja).</li>
+        </ul>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="!this.solicitudForm.valid" (click)="onSubmit()">Submit</button>
+  <button mat-raised-button color="primary" type="submit" (click)="irListado()">Ir al listado</button>

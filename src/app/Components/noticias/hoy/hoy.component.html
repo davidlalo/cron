@@ -1,0 +1,23 @@
+<h1 *ngIf="this.par === 1">ÚLTIMAS NOTICIAS</h1>
+<h1 *ngIf="this.par === 2">NOTICIAS DE HOY</h1>
+<h1 *ngIf="this.par === 3">NOTICIAS DE LA ÚLTIMA SEMANA</h1>
+<h1 *ngIf="this.par === 4">NOTICIAS DEL ÚLTIMO MES</h1>
+<h1 *ngIf="this.par === 5">TODAS LAS NOTICIAS</h1>
+<mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let noticia of noticias">
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{noticia.noticia}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{noticia.fecha}}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p>{{noticia.cuerpo}}</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-list-item>
+</mat-list>

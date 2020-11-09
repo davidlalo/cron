@@ -10,11 +10,29 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatListModule} from '@angular/material/list';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSelectModule} from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
-  imports: [],
+  imports: [
+    MatDatepickerModule,
+    MatNativeDateModule 
+  ],
+  providers: [  
+    MatDatepickerModule,
+    MatNativeDateModule  
+  ],
   exports:[
     MatButtonModule,
     MatCardModule,
@@ -23,7 +41,18 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatInputModule,
     MatTableModule,
     MatSnackBarModule,
-    BrowserAnimationsModule
-  ]
+    BrowserAnimationsModule,
+    MatMenuModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTooltipModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatExpansionModule,
+    MatCheckboxModule
+    ]
 })
 export class MaterialModule { }

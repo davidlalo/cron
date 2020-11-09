@@ -1,1 +1,14 @@
-<p>orientacion works!</p>
+<app-submenu [submenu]=3 (valor)="val($event)"></app-submenu>
+<mat-divider></mat-divider>
+<div *ngIf="this.valor==='que'">
+    <app-que></app-que>
+</div>
+<div *ngIf="this.valor==='primera'">
+    <app-primera></app-primera>
+</div>
+<div *ngIf="this.valor==='hoja'">
+    <app-hoja></app-hoja>
+</div>
+<div *ngIf="this.valor==='descargas'">
+    <app-descargas></app-descargas>
+</div>

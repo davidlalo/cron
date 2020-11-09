@@ -7,6 +7,7 @@ import { CabeceraComponent } from './Components/cabecera/cabecera.component';
 import { MenuComponent } from './Menu/menu/menu.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Modules
 import { MaterialModule } from './Modules/material/material.module';
@@ -28,6 +29,17 @@ import { TecnicosComponent } from './Components/brujulines/tecnicos/tecnicos.com
 import { ObjetivosComponent } from './Components/brujulines/objetivos/objetivos.component';
 import { AreasComponent } from './Components/brujulines/areas/areas.component';
 import { NivelesComponent } from './Components/brujulines/niveles/niveles.component';
+import { QueComponent } from './Components/orientacion/que/que.component';
+import { PrimeraComponent } from './Components/orientacion/primera/primera.component';
+import { HojaComponent } from './Components/orientacion/hoja/hoja.component';
+import { DescargasComponent } from './Components/orientacion/descargas/descargas.component';
+import { LoginComponent } from './Components/administracion/login/login.component';
+import { PrincipalComponent } from './Components/mapas/principal/principal.component';
+import { ListadoComponent } from './Components/mapas/listado/listado.component';
+import { SolicitudComponent } from './Components/mapas/solicitud/solicitud.component';
+import { ColemapaComponent } from './Components/mapas/colemapa/colemapa.component';
+import { HoyComponent } from './Components/noticias/hoy/hoy.component';
+import { ListadonoticiasComponent } from './Views/listadonoticias/listadonoticias.component';
 
 @NgModule({
   declarations: [
@@ -51,14 +63,26 @@ import { NivelesComponent } from './Components/brujulines/niveles/niveles.compon
     TecnicosComponent,
     ObjetivosComponent,
     AreasComponent,
-    NivelesComponent
+    NivelesComponent,
+    QueComponent,
+    PrimeraComponent,
+    HojaComponent,
+    DescargasComponent,
+    LoginComponent,
+    PrincipalComponent,
+    ListadoComponent,
+    SolicitudComponent,
+    ColemapaComponent,
+    HoyComponent,
+    ListadonoticiasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

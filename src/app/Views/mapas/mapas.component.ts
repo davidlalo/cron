@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapasComponent implements OnInit {
 
-  constructor() { }
+  public valor : string;
+
+  constructor() { 
+    this.valor = 'principal';
+  }
 
   ngOnInit(): void {
+    
+  }
+
+  val(value:string){
+    this.valor = value;
   }
 
 }
