@@ -37,4 +37,12 @@ export class SolicitudComponent implements OnInit {
   irListado() {
     console.warn(this.solicitudForm.value);
   }
+
+  getErrorMessage() {
+    if (this.solicitudForm.get('email').hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.solicitudForm.get('email').hasError('email') ? 'Not a valid email' : '';
+  }
 }

@@ -55,9 +55,14 @@
 
       <ng-container matColumnDef="idmapa">
         <th mat-header-cell *matHeaderCellDef>  </th>
-        <td mat-cell *matCellDef="let element"><button mat-mini-fab color="primary" matTooltip="Ver mapa">
+        <td mat-cell *matCellDef="let element">
+          <button mat-mini-fab color="primary" matTooltip="Ver mapa">
             <mat-icon>menu</mat-icon>
-          </button></td>
+          </button>
+          <button mat-mini-fab color="primary" matTooltip="Solicitar mapa">
+            <mat-icon>bookmark</mat-icon>
+          </button>
+        </td>
       </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

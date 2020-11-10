@@ -6,45 +6,54 @@
             <mat-select formControlName='mapa' required>
               <mat-option value="option">Option</mat-option>
             </mat-select>
+            <mat-error *ngIf="this.solicitudForm.get('mapa').invalid">Debe introducir un valor</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Solicitante</mat-label>
             <input matInput [formControl]="" formControlName="solicitante" required>
+            <mat-error *ngIf="this.solicitudForm.get('solicitante').invalid">Debe introducir un valor</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Responsable</mat-label>
             <input matInput [formControl]="" formControlName="responsable" required  matTooltip="Si el solicitante es una entidad indicar la persona responsable">
+            <mat-error *ngIf="this.solicitudForm.get('responsable').invalid">Debe introducir un valor</mat-error>
         </mat-form-field>
-        <br>
+        
         <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
             <input matInput [formControl]="" formControlName="email" required>
+            <mat-error *ngIf="this.solicitudForm.get('email').invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Teléfono</mat-label>
             <input matInput [formControl]="" formControlName="telefono" required>
+            <mat-error *ngIf="this.solicitudForm.get('telefono').invalid">Debe introducir un valor</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Actividad</mat-label>
             <input matInput [formControl]="" formControlName="actividad" required>
+            <mat-error *ngIf="this.solicitudForm.get('actividad').invalid">Debe introducir un valor</mat-error>
         </mat-form-field>
-        <br>      
+             
         <mat-form-field appearance="fill">
             <mat-label>Fecha inicio</mat-label>
             <input matInput [matDatepicker]="fini" formControlName="fini" required>
             <mat-datepicker-toggle matSuffix [for]="fini"></mat-datepicker-toggle>
             <mat-datepicker #fini></mat-datepicker>
+            <mat-error *ngIf="this.solicitudForm.get('fini').invalid">Debe introducir un valor</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Fecha fin</mat-label>
             <input matInput [matDatepicker]="ffin" formControlName="ffin" required>
             <mat-datepicker-toggle matSuffix [for]="ffin"></mat-datepicker-toggle>
             <mat-datepicker #ffin></mat-datepicker>
+            <mat-error *ngIf="this.solicitudForm.get('ffin').invalid">Debe introducir un valor</mat-error>
         </mat-form-field>
-        <br>       
+              
         <mat-form-field appearance="fill">
             <mat-label>Nº de participantes</mat-label>
-            <input matInput [formControl]="" formControlName="numero" required>
+            <input matInput [formControl]="" formControlName="numero" required  matTooltip="Número estimado de participantes">
+            <mat-error *ngIf="this.solicitudForm.get('numero').invalid">Debe introducir un valor</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Formato</mat-label>
@@ -52,8 +61,8 @@
               <mat-option value=".JPG">.JPG</mat-option>
               <mat-option value=".PDF">.PDF</mat-option>
             </mat-select>
+            <mat-error *ngIf="this.solicitudForm.get('formato').invalid">Debe introducir un valor</mat-error>
         </mat-form-field>
-        <br>
         <mat-form-field appearance="fill">
             <mat-label>Otros datos</mat-label>
             <textarea matInput formControlName='otros'></textarea>
@@ -80,3 +89,4 @@
 
   <button mat-raised-button color="primary" type="submit" [disabled]="!this.solicitudForm.valid" (click)="onSubmit()">Submit</button>
   <button mat-raised-button color="primary" type="submit" (click)="irListado()">Ir al listado</button>
+<br><br>

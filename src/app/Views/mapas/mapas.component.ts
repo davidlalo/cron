@@ -10,11 +10,11 @@ export class MapasComponent implements OnInit {
   public valor : string;
 
   constructor() { 
-    this.valor = 'principal';
+    
   }
 
   ngOnInit(): void {
-    
+    this.valor = 'principal';
   }
 
   val(value:string){
