@@ -8,6 +8,7 @@ import { MenuComponent } from './Menu/menu/menu.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 // Modules
 import { MaterialModule } from './Modules/material/material.module';
@@ -82,7 +83,8 @@ import { ListadonoticiasComponent } from './Views/listadonoticias/listadonoticia
     NgbModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

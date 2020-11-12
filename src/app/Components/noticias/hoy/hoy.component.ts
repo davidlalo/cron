@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Noticia } from 'src/app/Interfaces/noticia';
+import { LlamadasService } from '../../../Services/llamadas.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-hoy',
@@ -10,21 +12,28 @@ export class HoyComponent implements OnInit {
 
   @Input() par: any;
   panelOpenState = false;
-  public noticias : Noticia[] = [
-    {id : '',autor : 'Pepe',noticia : 'CRONChaquetillas',entradilla : 'probaros las tallas ya mismo',
-    cuerpo : 'Vamos comprar unas chaquetillas en el Decathlon, modelo Forclaz 900 Soft color negro. M&aacute;s info en el foro.',fecha : '03/06/2019'},
-    {id : '',autor : 'Pepe',noticia : 'CRONChaquetillas',entradilla : 'probaros las tallas ya mismo',
-    cuerpo : 'Vamos comprar unas chaquetillas en el Decathlon, modelo Forclaz 900 Soft color negro. M&aacute;s info en el foro.',fecha : '03/06/2019'},
-    {id : '',autor : 'Pepe',noticia : 'CRONChaquetillas',entradilla : 'probaros las tallas ya mismo',
-    cuerpo : 'Vamos comprar unas chaquetillas en el Decathlon, modelo Forclaz 900 Soft color negro. M&aacute;s info en el foro.',fecha : '03/06/2019'},
-    {id : '',autor : 'Pepe',noticia : 'CRONChaquetillas',entradilla : 'probaros las tallas ya mismo',
-    cuerpo : 'Vamos comprar unas chaquetillas en el Decathlon, modelo Forclaz 900 Soft color negro. M&aacute;s info en el foro.',fecha : '03/06/2019'},
-    {id : '',autor : 'Pepe',noticia : 'CRONChaquetillas',entradilla : 'probaros las tallas ya mismo',
-    cuerpo : 'Vamos comprar unas chaquetillas en el Decathlon, modelo Forclaz 900 Soft color negro. M&aacute;s info en el foro.',fecha : '03/06/2019'}
-  ];
-  constructor() { }
-
-  ngOnInit(): void {
+  noticias : Noticia[];
+  noticiasSubscription: Subscription;
+  constructor(private llamadas: LlamadasService) { 
+    this.noticias = [];
   }
 
+  ngOnInit(): void {
+    this.getNoticias()
+  }
+
+  getNoticias(){
+    this.noticiasSubscription = this.llamadas.getNoticias().subscribe(
+      (response) => {
+        this.noticias = response;
+      },
+      (error) => {console.log("Error Lalo: " + error);}
+    )
+  }
+
+  ngOnDestroy(){
+    if(!this.noticiasSubscription.closed){
+      this.noticiasSubscription.unsubscribe();
+    }
+  }
 }

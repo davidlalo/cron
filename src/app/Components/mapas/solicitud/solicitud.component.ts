@@ -35,7 +35,7 @@ export class SolicitudComponent implements OnInit {
   }
 
   irListado() {
-    console.warn(this.solicitudForm.value);
+    console.warn(this.solicitudForm.get('numero').invalid);
   }
 
   getErrorMessage() {
