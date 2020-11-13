@@ -3,21 +3,22 @@
 <h1 *ngIf="this.par === 3">NOTICIAS DE LA ÚLTIMA SEMANA</h1>
 <h1 *ngIf="this.par === 4">NOTICIAS DEL ÚLTIMO MES</h1>
 <h1 *ngIf="this.par === 5">TODAS LAS NOTICIAS</h1>
-<mat-list role="list">
-    <mat-list-item role="listitem" *ngFor="let noticia of noticias">
-        <mat-accordion>
-            <mat-expansion-panel (opened)="panelOpenState = true"
-                                 (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        {{noticia.noticia}}
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        {{noticia.fecha}}
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <p>{{noticia.cuerpo}}</p>
-            </mat-expansion-panel>
-        </mat-accordion>
-    </mat-list-item>
-</mat-list>
+<table>
+    <tr *ngFor="let noticia of noticias" class="new-list-item"><td>
+        <mat-card class="new-card">
+            <mat-card-header>
+                <div mat-card-avatar style="background-image: url('../../../../assets/noticias/{{noticia.id}}.jpg'); background-size: cover;"></div>
+                <mat-card-title>{{noticia.noticia}}</mat-card-title>
+                <mat-card-subtitle>{{noticia.entradilla}}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p>
+                    
+                </p>
+              </mat-card-content>
+              <mat-card-footer>
+                Creada por {{noticia.autor}} el día {{noticia.fecha}}
+              </mat-card-footer>
+        </mat-card></td>
+    </tr>
+</table>

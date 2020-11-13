@@ -1,10 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { Mapa } from '../../../Interfaces/mapa';
 import { LlamadasService } from '../../../Services/llamadas.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import { Subscription } from 'rxjs';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+export interface DialogData {
+  id: any;
+}
 
 @Component({
   selector: 'app-listado',
@@ -15,7 +20,7 @@ export class ListadoComponent implements OnInit {
 
   mapas : Mapa[];
   mapasSubscription: Subscription;
-  constructor(private llamadas: LlamadasService) { 
+  constructor(private llamadas: LlamadasService, public dialog: MatDialog) { 
     this.mapas = [];
   }
 
@@ -50,4 +55,27 @@ export class ListadoComponent implements OnInit {
       this.mapasSubscription.unsubscribe();
     }
   }
+
+  openDialog(element:Mapa): void {
+    const dialogRef = this.dialog.open(DialogOverviewDetalleDialog, {
+      data: {id : element.idmapa}
+    });
+  }
+}
+
+
+@Component({
+  selector: 'dialog-overview-detalle-dialog',
+  templateUrl: 'dialog-overview-detalle-dialog.html',
+})
+export class DialogOverviewDetalleDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewDetalleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onClick(): void {
+    this.dialogRef.close();
+  }
+
 }

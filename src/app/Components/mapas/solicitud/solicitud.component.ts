@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Mapa } from '../../../Interfaces/mapa';
+import { LlamadasService } from '../../../Services/llamadas.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-solicitud',
@@ -24,9 +27,14 @@ export class SolicitudComponent implements OnInit {
   });
   
 
-  constructor() { }
+  mapas : Mapa[];
+  mapasSubscription: Subscription;
+  constructor(private llamadas: LlamadasService) { 
+    this.mapas = [];
+  }
 
   ngOnInit(): void {
+    this.getMapas();
   }
 
   onSubmit() {
@@ -44,5 +52,20 @@ export class SolicitudComponent implements OnInit {
     }
 
     return this.solicitudForm.get('email').hasError('email') ? 'Not a valid email' : '';
+  }
+
+  getMapas(){
+    this.mapasSubscription = this.llamadas.getMapas().subscribe(
+      (response) => {
+        this.mapas = response;
+      },
+      (error) => {console.log("Error Lalo: " + error);}
+    )
+  }
+
+  ngOnDestroy(){
+    if(!this.mapasSubscription.closed){
+      this.mapasSubscription.unsubscribe();
+    }
   }
 }

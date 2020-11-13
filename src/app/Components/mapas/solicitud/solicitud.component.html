@@ -4,7 +4,7 @@
         <mat-form-field appearance="fill">
             <mat-label>Mapa</mat-label>
             <mat-select formControlName='mapa' required>
-              <mat-option value="option">Option</mat-option>
+              <mat-option value="{{mapa.idmapa}}" *ngFor="let mapa of mapas;">{{mapa.denominacion}}</mat-option>
             </mat-select>
             <mat-error *ngIf="this.solicitudForm.get('mapa').invalid">Debe introducir un valor</mat-error>
         </mat-form-field>

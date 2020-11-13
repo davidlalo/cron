@@ -1,17 +1,7 @@
-<app-submenu [submenu]=2 (valor)="val($event)"></app-submenu>
-<mat-divider></mat-divider>
-<div *ngIf="this.valor==='presentacion'">
-    <app-presentacion></app-presentacion>
-</div>
-<div *ngIf="this.valor==='areas'">
-    <app-areas></app-areas>
-</div>
-<div *ngIf="this.valor==='niveles'">
-    <app-niveles></app-niveles>
-</div>
-<div *ngIf="this.valor==='objetivos'">
-    <app-objetivos></app-objetivos>
-</div>
-<div *ngIf="this.valor==='tecnicos'">
-    <app-tecnicos></app-tecnicos>
-</div>
+<mat-tab-group>
+    <mat-tab label="Presentación"> <app-presentacion></app-presentacion> </mat-tab>
+    <mat-tab label="Técnicos responsables"> <app-areas></app-areas> </mat-tab>
+    <mat-tab label="Objetivos y filosofía"> <app-niveles></app-niveles> </mat-tab>
+    <mat-tab label="Áreas de enseñanza"> <app-objetivos></app-objetivos> </mat-tab>
+    <mat-tab label="Niveles de los cronetes"> <app-tecnicos></app-tecnicos> </mat-tab>
+  </mat-tab-group>

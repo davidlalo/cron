@@ -12,7 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 // Modules
 import { MaterialModule } from './Modules/material/material.module';
-import { SubmenuComponent } from './Menu/submenu/submenu.component';
 import { CalendarioComponent } from './Components/home/calendario/calendario.component';
 import { TwitterComponent } from './Components/home/twitter/twitter.component';
 import { FacebookComponent } from './Components/home/facebook/facebook.component';
@@ -47,7 +46,6 @@ import { ListadonoticiasComponent } from './Views/listadonoticias/listadonoticia
     AppComponent,
     CabeceraComponent,
     MenuComponent,
-    SubmenuComponent,
     CalendarioComponent,
     TwitterComponent,
     FacebookComponent,

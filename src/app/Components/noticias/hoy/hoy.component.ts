@@ -23,7 +23,7 @@ export class HoyComponent implements OnInit {
   }
 
   getNoticias(){
-    this.noticiasSubscription = this.llamadas.getNoticias().subscribe(
+    this.noticiasSubscription = this.llamadas.getNoticias(this.par).subscribe(
       (response) => {
         this.noticias = response;
       },

@@ -1,14 +1,6 @@
-<app-submenu [submenu]=3 (valor)="val($event)"></app-submenu>
-<mat-divider></mat-divider>
-<div *ngIf="this.valor==='que'">
-    <app-que></app-que>
-</div>
-<div *ngIf="this.valor==='primera'">
-    <app-primera></app-primera>
-</div>
-<div *ngIf="this.valor==='hoja'">
-    <app-hoja></app-hoja>
-</div>
-<div *ngIf="this.valor==='descargas'">
-    <app-descargas></app-descargas>
-</div>
+<mat-tab-group>
+    <mat-tab label="¿Qué es?"> <app-que></app-que> </mat-tab>
+    <mat-tab label="Mi Primera carrera"> <app-primera></app-primera> </mat-tab>
+    <mat-tab label="Hoja de descripción"> <app-hoja></app-hoja> </mat-tab>
+    <mat-tab label="Descargas"> <app-descargas></app-descargas> </mat-tab>
+  </mat-tab-group>

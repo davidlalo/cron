@@ -11,12 +11,14 @@ export class LlamadasService {
 
   public getMapas = function(){
     const url = "http://orientacron.es/restapi/mapas.php";
+    //const url = "http://localhost/CRON/restapi/mapas.php";
     this.respuesta = this.http.get(url);
     return this.respuesta;
   }
 
-  public getNoticias = function(){
-    const url = "http://orientacron.es/restapi/news.php";
+  public getNoticias = function(param){
+    const url = "http://orientacron.es/restapi/news.php?param="+param;
+    //const url = "http://localhost/CRON/restapi/news.php?param="+param;
     this.respuesta = this.http.get(url);
     return this.respuesta;
   }

@@ -1,14 +1,6 @@
-<app-submenu [submenu]=7 (valor)="val($event)"></app-submenu>
-<mat-divider></mat-divider>
-<div *ngIf="this.valor==='hoy'">
-    <app-hoy [par]=2></app-hoy>
-</div>
-<div *ngIf="this.valor==='semana'">
-    <app-hoy [par]=3></app-hoy>
-</div>
-<div *ngIf="this.valor==='mes'">
-    <app-hoy [par]=4></app-hoy>
-</div>
-<div *ngIf="this.valor==='todas'">
-    <app-hoy [par]=5></app-hoy>
-</div>
+<mat-tab-group>
+    <mat-tab label="Hoy"> <app-hoy [par]=2></app-hoy> </mat-tab>
+    <mat-tab label="Última semana"> <app-hoy [par]=3></app-hoy> </mat-tab>
+    <mat-tab label="Último mes"> <app-hoy [par]=4></app-hoy> </mat-tab>
+    <mat-tab label="Todas"> <app-hoy [par]=5></app-hoy> </mat-tab>
+  </mat-tab-group>
