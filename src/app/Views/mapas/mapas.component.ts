@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class MapasComponent implements OnInit {
 
   public valor : string;
+  public id : string;
 
   constructor() { 
     
@@ -19,6 +20,10 @@ export class MapasComponent implements OnInit {
 
   val(value:string){
     this.valor = value;
+  }
+
+  idmapa(id:string){
+    this.id = id;
   }
 
 }

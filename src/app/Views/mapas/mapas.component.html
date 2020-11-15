@@ -2,10 +2,10 @@
     <app-principal (valor)="val($event)"></app-principal>
 </div>
 <div *ngIf="this.valor==='listado'">
-    <app-listado></app-listado>
+    <app-listado (valor)="val($event)" (id)="idmapa($event)"></app-listado>
 </div>
 <div *ngIf="this.valor==='solicitud'">
-    <app-solicitud></app-solicitud>
+    <app-solicitud (valor)="val($event)" [id]="id"></app-solicitud>
 </div>
 <div *ngIf="this.valor==='colemapa'">
     <app-colemapa></app-colemapa>

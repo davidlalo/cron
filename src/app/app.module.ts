@@ -33,13 +33,30 @@ import { QueComponent } from './Components/orientacion/que/que.component';
 import { PrimeraComponent } from './Components/orientacion/primera/primera.component';
 import { HojaComponent } from './Components/orientacion/hoja/hoja.component';
 import { DescargasComponent } from './Components/orientacion/descargas/descargas.component';
-import { LoginComponent } from './Components/administracion/login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { PrincipalComponent } from './Components/mapas/principal/principal.component';
 import { ListadoComponent } from './Components/mapas/listado/listado.component';
 import { SolicitudComponent } from './Components/mapas/solicitud/solicitud.component';
 import { ColemapaComponent } from './Components/mapas/colemapa/colemapa.component';
 import { HoyComponent } from './Components/noticias/hoy/hoy.component';
 import { ListadonoticiasComponent } from './Views/listadonoticias/listadonoticias.component';
+import { AdminNoticiasComponent } from './Components/administracion/admin-noticias/admin-noticias.component';
+import { AdminDatosComponent } from './Components/administracion/admin-datos/admin-datos.component';
+import { AdminEnlacesComponent } from './Components/administracion/admin-enlaces/admin-enlaces.component';
+import { AdminCorreosComponent } from './Components/administracion/admin-correos/admin-correos.component';
+import { AdminPassComponent } from './Components/administracion/admin-pass/admin-pass.component';
+import { AdminMapasComponent } from './Components/administracion/admin-mapas/admin-mapas.component';
+import { ListadoEnlacesComponent } from './Components/enlaces/listado-enlaces/listado-enlaces.component';
+import { NuestroComponent } from './Components/club/nuestro/nuestro.component';
+import { GuiaComponent } from './Components/club/guia/guia.component';
+import { InicioComponent } from './Components/raid/inicio/inicio.component';
+import { PrimerRaidComponent } from './Components/raid/primer-raid/primer-raid.component';
+import { ProgramaComponent } from './Components/raid/programa/programa.component';
+import { NormativaComponent } from './Components/raid/normativa/normativa.component';
+import { InformacionComponent } from './Components/raid/informacion/informacion.component';
+import { BoletinesComponent } from './Components/raid/boletines/boletines.component';
+import { InscripcionesComponent } from './Components/raid/inscripciones/inscripciones.component';
+import { ClasificacionesComponent } from './Components/raid/clasificaciones/clasificaciones.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +90,24 @@ import { ListadonoticiasComponent } from './Views/listadonoticias/listadonoticia
     SolicitudComponent,
     ColemapaComponent,
     HoyComponent,
-    ListadonoticiasComponent
+    ListadonoticiasComponent,
+    AdminNoticiasComponent,
+    AdminDatosComponent,
+    AdminEnlacesComponent,
+    AdminCorreosComponent,
+    AdminPassComponent,
+    AdminMapasComponent,
+    ListadoEnlacesComponent,
+    NuestroComponent,
+    GuiaComponent,
+    InicioComponent,
+    PrimerRaidComponent,
+    ProgramaComponent,
+    NormativaComponent,
+    InformacionComponent,
+    BoletinesComponent,
+    InscripcionesComponent,
+    ClasificacionesComponent
   ],
   imports: [
     BrowserModule,

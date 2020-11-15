@@ -1,3 +1,8 @@
-<div class="header-toolbar2">
+<div>
 <img src="../../../assets/images/cabecera1.jpg" border="0" name="imagen"/>
+<div *ngIf="authService.userLoggedIn!=undefined">Zona de: {{authService.userLoggedIn.nombre}}
+    <button mat-icon-button aria-label="Logout" (click)="logout();" tooltip="logout">
+        <mat-icon>open_in_new</mat-icon>
+      </button>
+</div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Mapa } from '../../../Interfaces/mapa';
 import { LlamadasService } from '../../../Services/llamadas.service';
@@ -10,6 +10,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./solicitud.component.scss']
 })
 export class SolicitudComponent implements OnInit {
+
+  @Input() id: string;
+  @Output() valor : EventEmitter<string> = new EventEmitter();
 
   solicitudForm = new FormGroup({
     mapa : new FormControl('', [Validators.required]),
@@ -26,7 +29,7 @@ export class SolicitudComponent implements OnInit {
     acepto : new FormControl('', [Validators.requiredTrue])
   });
   
-
+  nombre : string;
   mapas : Mapa[];
   mapasSubscription: Subscription;
   constructor(private llamadas: LlamadasService) { 
@@ -35,6 +38,7 @@ export class SolicitudComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMapas();
+    this.setNombre;
   }
 
   onSubmit() {
@@ -42,16 +46,26 @@ export class SolicitudComponent implements OnInit {
     console.warn(this.solicitudForm.value);
   }
 
-  irListado() {
-    console.warn(this.solicitudForm.get('numero').invalid);
+  val(value:string){
+    this.valor.emit(value);
   }
 
+  setNombre(){
+    if(this.id!=undefined){
+      var i:number; 
+      for(i=0;i<this.mapas.length;i++){
+        if(this.mapas[i].idmapa===this.id){
+          this.nombre=this.mapas[i].denominacion;
+        }
+      }
+    }
+  }
   getErrorMessage() {
     if (this.solicitudForm.get('email').hasError('required')) {
-      return 'You must enter a value';
+      return 'Debe introducir un valor';
     }
 
-    return this.solicitudForm.get('email').hasError('email') ? 'Not a valid email' : '';
+    return this.solicitudForm.get('email').hasError('email') ? 'No es un email válido' : '';
   }
 
   getMapas(){

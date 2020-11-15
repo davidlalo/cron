@@ -9,6 +9,8 @@ import { ClubComponent } from './Views/club/club.component';
 import { ListadonoticiasComponent } from './Views/listadonoticias/listadonoticias.component';
 import { EnlacesComponent } from './Views/enlaces/enlaces.component';
 import { AdministracionComponent } from './Views/administracion/administracion.component';
+import { AuthGuard } from './auth/auth.guard';
+import { LoginComponent } from './auth/login/login.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,7 +22,8 @@ const routes: Routes = [
   { path: 'club', component: ClubComponent },
   { path: 'noticias', component: ListadonoticiasComponent },
   { path: 'enlaces', component: EnlacesComponent },
-  { path: 'administracion', component: AdministracionComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'admin', component: AdministracionComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

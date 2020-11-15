@@ -16,9 +16,23 @@ export class LlamadasService {
     return this.respuesta;
   }
 
-  public getNoticias = function(param){
+  public getNoticias = function(param:string){
     const url = "http://orientacron.es/restapi/news.php?param="+param;
     //const url = "http://localhost/CRON/restapi/news.php?param="+param;
+    this.respuesta = this.http.get(url);
+    return this.respuesta;
+  }
+
+  public acces = function(user:string,pass:string){
+     const url = "http://orientacron.es/restapi/acces.php?usuario="+user+"&password="+pass;
+     //const url = "http://localhost/CRON/restapi/acces.php?usuario="+user+"&password="+pass;
+     this.respuesta = this.http.get(url);
+     return this.respuesta;
+  }
+
+  public getEnlaces = function(){
+    const url = "http://orientacron.es/restapi/enlaces.php";
+    //const url = "http://localhost/CRON/restapi/enlaces.php";
     this.respuesta = this.http.get(url);
     return this.respuesta;
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, Output, EventEmitter } from '@angular/core';
 import { Mapa } from '../../../Interfaces/mapa';
 import { LlamadasService } from '../../../Services/llamadas.service';
 import {MatPaginator} from '@angular/material/paginator';
@@ -18,6 +18,8 @@ export interface DialogData {
 })
 export class ListadoComponent implements OnInit {
 
+  @Output() valor : EventEmitter<string> = new EventEmitter();
+  @Output() id : EventEmitter<string> = new EventEmitter();
   mapas : Mapa[];
   mapasSubscription: Subscription;
   constructor(private llamadas: LlamadasService, public dialog: MatDialog) { 
@@ -39,14 +41,16 @@ export class ListadoComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
+  val(value:string,element:Mapa){
+    this.valor.emit(value);
+    this.id.emit(element.idmapa);
+  }
   getMapas(){
     this.mapasSubscription = this.llamadas.getMapas().subscribe(
       (mapas) => {
         this.dataSource.data = mapas;
         this.dataSource._updateChangeSubscription();
-      },
-      (error) => {console.log("Error Lalo: " + error);}
+      }
     )
   }
 
