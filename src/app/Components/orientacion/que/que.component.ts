@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-que',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QueComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewSimboloDialog);
+  }
 }
+
+  @Component({
+    selector: 'dialog-overview-simbolo-dialog',
+    templateUrl: 'dialog-overview-simbolo-dialog.html',
+  })
+  export class DialogOverviewSimboloDialog {
+  
+    constructor(
+      public dialogRef: MatDialogRef<DialogOverviewSimboloDialog>) {}
+  
+    onClick(): void {
+      this.dialogRef.close();
+    }
+  }
+
+

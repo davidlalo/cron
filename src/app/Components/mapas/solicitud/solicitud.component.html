@@ -12,7 +12,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill" *ngIf="this.id!=undefined">
             <mat-label>Mapa</mat-label>
-            <input matInput formControlName="mapa" placeholder="{{nombre}}" value="{{id}}">
+            <input matInput formControlName="mapa" placeholder="{{this.nombre}}" readonly>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Solicitante</mat-label>

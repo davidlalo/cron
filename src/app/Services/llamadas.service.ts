@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { Solicitud } from '../Interfaces/solicitud';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,24 @@ export class LlamadasService {
     const url = "http://orientacron.es/restapi/enlaces.php";
     //const url = "http://localhost/CRON/restapi/enlaces.php";
     this.respuesta = this.http.get(url);
+    return this.respuesta;
+  }
+
+  public enviarSolicitud = function(sol:Solicitud){
+    //const url = "http://orientacron.es/restapi/solicitud.php";
+    const url = "http://localhost/CRON/restapi/solicitud.php";
+    var params = '?solicitante='+sol.solicitante;
+    params = params+'&responsable='+sol.responsable;
+    params = params+'&email='+sol.email;
+    params = params+'&telefono='+sol.telefono;
+    params = params+'&otros='+sol.otros;
+    params = params+'&mapa='+sol.mapa;
+    params = params+'&actividad='+sol.actividad;
+    params = params+'&f_inicio='+sol.f_inicio;
+    params = params+'&f_fin='+sol.f_fin;
+    params = params+'&participantes='+sol.participantes;
+    params = params+'&formato='+sol.formato;
+    this.respuesta = this.http.get(url+params);
     return this.respuesta;
   }
 }
