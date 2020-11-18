@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Mapa } from '../../../Interfaces/mapa';
 import { LlamadasService } from '../../../Services/llamadas.service';
 import { Subscription } from 'rxjs';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import { Solicitud } from '../../../Interfaces/solicitud';
 import { formatDate} from '@angular/common';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -40,7 +39,7 @@ export class SolicitudComponent implements OnInit {
   sol : Solicitud;
   mensaje : string;
 
-  constructor(private llamadas: LlamadasService, private _snackBar: MatSnackBar, public dialog: MatDialog) { 
+  constructor(private llamadas: LlamadasService, public dialog: MatDialog) { 
     this.mapas = [];
     this.sol = {
       id : "",

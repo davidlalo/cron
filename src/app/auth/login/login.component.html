@@ -11,7 +11,7 @@
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill">
-            <mat-label>Enter your password</mat-label>
+            <mat-label>Contraseña</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -20,5 +20,5 @@
         </mat-form-field>
     </div>
   </div>
-  <button mat-raised-button color="primary" type="submit" [disabled]="!this.loginForm.valid" (click)="onSubmit()">Submit</button>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!this.loginForm.valid" (click)="onSubmit()">Entrar</button>
 </div>

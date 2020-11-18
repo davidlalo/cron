@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Solicitud } from '../Interfaces/solicitud';
+import { Noticia } from '../Interfaces/noticia';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +40,8 @@ export class LlamadasService {
   }
 
   public enviarSolicitud = function(sol:Solicitud){
-    //const url = "http://orientacron.es/restapi/solicitud.php";
-    const url = "http://localhost/CRON/restapi/solicitud.php";
+    const url = "http://orientacron.es/restapi/solicitud.php";
+    //const url = "http://localhost/CRON/restapi/solicitud.php";
     var params = '?solicitante='+sol.solicitante;
     params = params+'&responsable='+sol.responsable;
     params = params+'&email='+sol.email;
@@ -52,6 +53,52 @@ export class LlamadasService {
     params = params+'&f_fin='+sol.f_fin;
     params = params+'&participantes='+sol.participantes;
     params = params+'&formato='+sol.formato;
+    this.respuesta = this.http.get(url+params);
+    return this.respuesta;
+  }
+
+  public getMisNoticias(id:string){
+    const url = "http://orientacron.es/restapi/misnoticias.php";
+    //const url = "http://localhost/CRON/restapi/misnoticias.php";
+    var params = '?id='+id;
+    this.respuesta = this.http.get(url+params);
+    return this.respuesta;
+  }
+
+  public getNoticia(id:string){
+    const url = "http://orientacron.es/restapi/noticia.php";
+    //const url = "http://localhost/CRON/restapi/noticia.php";
+    var params = '?id='+id;
+    this.respuesta = this.http.get(url+params);
+    return this.respuesta;
+  }
+
+  public deleteNoticia(id:string){
+    const url = "http://orientacron.es/restapi/borrarnoticia.php";
+    //const url = "http://localhost/CRON/restapi/borrarnoticia.php";
+    var params = '?id='+id;
+    this.respuesta = this.http.get(url+params);
+    return this.respuesta;
+  }
+
+  public insertNoticia = function(not:Noticia){
+    const url = "http://orientacron.es/restapi/insertarnoticia.php";
+    //const url = "http://localhost/CRON/restapi/insertarnoticia.php";
+    var params = '?user='+not.autor;
+    params = params+'&titulo='+not.noticia;
+    params = params+'&entradilla='+not.entradilla;
+    params = params+'&cuerpo='+not.cuerpo;
+    this.respuesta = this.http.get(url+params);
+    return this.respuesta;
+  }
+
+  public updateNoticia = function(not:Noticia){
+    const url = "http://orientacron.es/restapi/actualizarnoticia.php";
+    //const url = "http://localhost/CRON/restapi/actualizarnoticia.php";
+    var params = '?id='+not.id;
+    params = params+'&titulo='+not.noticia;
+    params = params+'&entradilla='+not.entradilla;
+    params = params+'&cuerpo='+not.cuerpo;
     this.respuesta = this.http.get(url+params);
     return this.respuesta;
   }

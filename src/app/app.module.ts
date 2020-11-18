@@ -57,6 +57,7 @@ import { InformacionComponent } from './Components/raid/informacion/informacion.
 import { BoletinesComponent } from './Components/raid/boletines/boletines.component';
 import { InscripcionesComponent } from './Components/raid/inscripciones/inscripciones.component';
 import { ClasificacionesComponent } from './Components/raid/clasificaciones/clasificaciones.component';
+import { LinksComponent } from './Components/home/links/links.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { ClasificacionesComponent } from './Components/raid/clasificaciones/clas
     InformacionComponent,
     BoletinesComponent,
     InscripcionesComponent,
-    ClasificacionesComponent
+    ClasificacionesComponent,
+    LinksComponent
   ],
   imports: [
     BrowserModule,

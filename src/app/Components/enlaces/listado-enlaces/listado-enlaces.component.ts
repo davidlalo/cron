@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { LlamadasService } from '../../../Services/llamadas.service';
 import { Subscription, Observable, of } from 'rxjs';
 import { Enlace } from '../../../Interfaces/enlace';
-import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-listado-enlaces',

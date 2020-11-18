@@ -20,10 +20,10 @@ export class ListadoComponent implements OnInit {
 
   @Output() valor : EventEmitter<string> = new EventEmitter();
   @Output() id : EventEmitter<string> = new EventEmitter();
-  mapas : Mapa[];
+  //mapas : Mapa[];
   mapasSubscription: Subscription;
   constructor(private llamadas: LlamadasService, public dialog: MatDialog) { 
-    this.mapas = [];
+    //this.mapas = [];
   }
 
   ngOnInit(): void {
@@ -47,8 +47,8 @@ export class ListadoComponent implements OnInit {
   }
   getMapas(){
     this.mapasSubscription = this.llamadas.getMapas().subscribe(
-      (mapas) => {
-        this.dataSource.data = mapas;
+      (response:Mapa[]) => {
+        this.dataSource.data = response;
         this.dataSource._updateChangeSubscription();
       }
     )
