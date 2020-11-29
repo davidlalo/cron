@@ -14,7 +14,7 @@ import { LoginComponent } from './auth/login/login.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'cron', component: HomeComponent },
   { path: 'brujulines', component: BrujulinesComponent },
   { path: 'orientacion', component: OrientacionComponent },
   { path: 'mapas', component: MapasComponent },

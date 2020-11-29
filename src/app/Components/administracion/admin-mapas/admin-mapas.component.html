@@ -1,1 +1,114 @@
-<p>admin-mapas works!</p>
+<h1><b>GESTIÓN DE MAPAS</b></h1>
+<div *ngIf="seccion==='listado'">
+    <button mat-raised-button (click)="cambio('nueva')">Nuevo mapa</button>
+    <br><br><mat-divider></mat-divider><br>
+    <mat-form-field>
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+      </mat-form-field>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort class="tabla">
+
+        <ng-container matColumnDef="denominacion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> DENOMINACIÓN </th>
+          <td mat-cell *matCellDef="let element"> {{element.denominacion}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="autores">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> AUTORES </th>
+          <td mat-cell *matCellDef="let element"> {{element.autores}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ent_patroc">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ENTIDAD PATROCINADORA </th>
+          <td mat-cell *matCellDef="let element"> {{element.ent_patroc}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ubicacion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> UBICACIÓN </th>
+            <td mat-cell *matCellDef="let element"> {{element.ubicacion}} </td>
+          </ng-container>
+        
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-mini-fab color="primary" matTooltip="Modificar" (click)="accion('1',element)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-mini-fab color="primary" matTooltip="Borrar" (click)="accion('2',element)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">Ningún dato coincide con el filtro "{{input.value}}"</td>
+        </tr>
+      </table>
+     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>
+<div *ngIf="seccion==='nueva'">
+    <div [formGroup]="mapaForm">
+        <mat-form-field appearance="fill">
+            <mat-label>DENOMINACIÓN</mat-label>
+            <input matInput formControlName="denominacion" required>
+            <mat-error *ngIf="this.mapaForm.get('denominacion').invalid">Debe introducir un valor</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>AUTORES</mat-label>
+            <input matInput formControlName="autores" required>
+            <mat-error *ngIf="this.mapaForm.get('autores').invalid">Debe introducir un valor</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>ENTIDAD PATROCINADORA</mat-label>
+            <input matInput formControlName="entidad" required>
+            <mat-error *ngIf="this.mapaForm.get('entidad').invalid">Debe introducir un valor</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Nº REGISTRO PROPIEDAD INTELECTUAL</mat-label>
+            <input matInput formControlName="registro_PI" required>
+            <mat-error *ngIf="this.mapaForm.get('registro_PI').invalid">Debe introducir un valor</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Nº DEPÓSITO LEGAL</mat-label>
+            <input matInput formControlName="deposito" required>
+            <mat-error *ngIf="this.mapaForm.get('deposito').invalid">Debe introducir un valor</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Nº REGISTRO FEDO</mat-label>
+            <input matInput formControlName="registro_FEDO" required>
+            <mat-error *ngIf="this.mapaForm.get('registro_FEDO').invalid">Debe introducir un valor</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>ESCALA</mat-label>
+            <input matInput formControlName="escala" required>
+            <mat-error *ngIf="this.mapaForm.get('escala').invalid">Debe introducir un valor</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>TAMAÑO DE IMPRESIÓN</mat-label>
+            <input matInput formControlName="tamano" required>
+            <mat-error *ngIf="this.mapaForm.get('tamano').invalid">Debe introducir un valor</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>UBICACIÓN (municipio)</mat-label>
+            <input matInput formControlName="ubicacion" required>
+            <mat-error *ngIf="this.mapaForm.get('ubicacion').invalid">Debe introducir un valor</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>COORDENADAS GPS</mat-label>
+            <input matInput formControlName="coordenadas" required>
+            <mat-error *ngIf="this.mapaForm.get('coordenadas').invalid">Debe introducir un valor</mat-error>
+        </mat-form-field>
+        <br>
+    </div>
+  <mat-divider></mat-divider>
+ <br>
+    <button mat-raised-button (click)="onSubmit()" [disabled]="!this.mapaForm.valid">Guardar</button>
+    <button mat-raised-button (click)="cambio('listado')">Volver al listado</button>
+</div>
+<br>

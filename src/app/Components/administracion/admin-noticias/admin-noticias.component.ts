@@ -6,9 +6,10 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import { Subscription } from 'rxjs';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { AuthService } from '../../../auth/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { DialogoConfirmacionComponent } from "../../dialogo-confirmacion/dialogo-confirmacion.component";
 
 @Component({
   selector: 'app-admin-noticias',
@@ -31,7 +32,7 @@ export class AdminNoticiasComponent implements OnInit {
   });
   not : Noticia;
 
-  constructor(private llamadas: LlamadasService, public dialog: MatDialog, public authService: AuthService, private _snackBar: MatSnackBar) {
+  constructor(private llamadas: LlamadasService, public dialogo: MatDialog, public authService: AuthService, private _snackBar: MatSnackBar) {
     this.seccion = "listado";
     this.not = {
       id : "",
@@ -74,16 +75,16 @@ export class AdminNoticiasComponent implements OnInit {
     if(!this.noticiasSubscription.closed){
       this.noticiasSubscription.unsubscribe();
     }
-    if(!this.noticiaSubscription.closed){
+    if(this.noticiaSubscription!=undefined && !this.noticiaSubscription.closed){
       this.noticiaSubscription.unsubscribe();
     }
-    if(!this.insertSubscription.closed){
+    if(this.insertSubscription!=undefined && !this.insertSubscription.closed){
       this.insertSubscription.unsubscribe();
     }
-    if(!this.deleteSubscription.closed){
+    if(this.deleteSubscription!=undefined && !this.deleteSubscription.closed){
       this.deleteSubscription.unsubscribe();
     }
-    if(!this.updateSubscription.closed){
+    if(this.updateSubscription!=undefined && !this.updateSubscription.closed){
       this.updateSubscription.unsubscribe();
     }
   }
@@ -102,21 +103,7 @@ export class AdminNoticiasComponent implements OnInit {
         }
       )     
     }else{
-      this.deleteSubscription = this.llamadas.deleteNoticia(this.id).subscribe(
-        (response) => {
-          if(response===0){
-            this._snackBar.open("La noticia se ha borrado correctamente", "OK", {
-              duration: 2000,
-            });
-            this.getMisNoticias();
-          }else{
-            this._snackBar.open("No se ha podido borrar la noticia", "Error", {
-              duration: 2000,
-            });
-          }
-        }
-      )
-      this.id = "";
+      this.mostrarDialogo();
     }
     
   }
@@ -128,7 +115,7 @@ export class AdminNoticiasComponent implements OnInit {
     this.not.autor=this.authService.userLoggedIn.nombre;
     if(this.id===""){ 
       this.insertSubscription = this.llamadas.insertNoticia(this.not).subscribe(
-        (response) => {
+        (response:any) => {
           if(response===0){
             this._snackBar.open("La noticia se ha insertado correctamente", "OK", {
               duration: 2000,
@@ -160,5 +147,32 @@ export class AdminNoticiasComponent implements OnInit {
       )
       this.id = "";
     }
+  }
+
+  mostrarDialogo(): void {
+    this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Está seguro de borrar la noticia?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.deleteSubscription = this.llamadas.deleteNoticia(this.id).subscribe(
+            (response) => {
+              if(response===0){
+                this._snackBar.open("La noticia se ha borrado correctamente", "OK", {
+                  duration: 2000,
+                });
+                this.getMisNoticias();
+              }else{
+                this._snackBar.open("No se ha podido borrar la noticia", "Error", {
+                  duration: 2000,
+                });
+              }
+            }
+          )
+          this.id = "";
+        }
+      });     
   }
 }

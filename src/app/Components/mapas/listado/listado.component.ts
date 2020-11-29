@@ -65,6 +65,15 @@ export class ListadoComponent implements OnInit {
       data: {id : element.idmapa}
     });
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 }
 
 
@@ -81,5 +90,4 @@ export class DialogOverviewDetalleDialog {
   onClick(): void {
     this.dialogRef.close();
   }
-
 }

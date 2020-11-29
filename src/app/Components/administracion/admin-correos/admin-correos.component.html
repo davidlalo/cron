@@ -1,1 +1,42 @@
-<p>admin-correos works!</p>
+<h1><b>MIEMBROS DEL CLUB</b></h1>
+
+<mat-form-field>
+    <mat-label>Filtro</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort class="tabla">
+
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="nombre_completo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE COMPLETO </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombre_completo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> EMAIL </th>
+        <td mat-cell *matCellDef="let element"> {{ element.orden==='0'?element.email:'*Cambia la configuración en Mis datos'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="categoria">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> CATEGORÍA </th>
+        <td mat-cell *matCellDef="let element"> {{element.categoria}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="sportident">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> SPORTIDENT </th>
+            <td mat-cell *matCellDef="let element"> {{element.sportident}} </td>
+            </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">Ningún dato coincide con el filtro "{{input.value}}"</td>
+    </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

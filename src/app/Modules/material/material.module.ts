@@ -25,6 +25,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [],
@@ -58,7 +59,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCheckboxModule,
     MatGridListModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatAutocompleteModule
     ]
 })
 export class MaterialModule { }

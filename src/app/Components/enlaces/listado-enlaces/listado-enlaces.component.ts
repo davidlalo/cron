@@ -31,7 +31,6 @@ export class ListadoEnlacesComponent implements OnInit {
   getAutores(){
     var autor : string = '';
     var i : number = 0;
-    console.log(this.enlaces.length);
     for(i;i<this.enlaces.length;i++){
       if(this.enlaces[i].autor!=autor){
         this.autores.push(this.enlaces[i].autor);

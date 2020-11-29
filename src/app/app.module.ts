@@ -58,6 +58,9 @@ import { BoletinesComponent } from './Components/raid/boletines/boletines.compon
 import { InscripcionesComponent } from './Components/raid/inscripciones/inscripciones.component';
 import { ClasificacionesComponent } from './Components/raid/clasificaciones/clasificaciones.component';
 import { LinksComponent } from './Components/home/links/links.component';
+import { AdminSolicitudesComponent } from './Components/administracion/admin-solicitudes/admin-solicitudes.component';
+import { FootComponent } from './Components/foot/foot.component';
+import { DialogoConfirmacionComponent } from './Components/dialogo-confirmacion/dialogo-confirmacion.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +112,10 @@ import { LinksComponent } from './Components/home/links/links.component';
     BoletinesComponent,
     InscripcionesComponent,
     ClasificacionesComponent,
-    LinksComponent
+    LinksComponent,
+    AdminSolicitudesComponent,
+    FootComponent,
+    DialogoConfirmacionComponent
   ],
   imports: [
     BrowserModule,
@@ -121,6 +127,9 @@ import { LinksComponent } from './Components/home/links/links.component';
     HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    DialogoConfirmacionComponent
+  ]
 })
 export class AppModule { }

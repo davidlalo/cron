@@ -1,1 +1,34 @@
-<p>admin-enlaces works!</p>
+<h1><b>ENLACES</b></h1>
+<div [formGroup]="enlaceForm">
+    <mat-form-field appearance="fill">
+        <mat-label>Categoría</mat-label>
+        <mat-select formControlName="autor" (selectionChange)="cambiar()">
+          <mat-option value="otro">Nueva</mat-option>
+          <mat-option *ngFor="let autor of autores" value="{{autor}}">{{autor}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="this.enlaceForm.get('autor').invalid">Debe introducir un valor</mat-error>
+      </mat-form-field>
+      <ng-container *ngIf="this.enlaceForm.get('autor').value==='otro'">
+    <mat-form-field appearance="fill" class="texto2">
+        <mat-label>Categoría</mat-label>
+        <input matInput formControlName="autor_input" required>
+        <mat-error *ngIf="this.enlaceForm.get('autor_input').invalid">Debe introducir un valor</mat-error>
+    </mat-form-field>
+</ng-container>
+    <br>
+    <mat-form-field appearance="fill" class="texto">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" required>
+        <mat-error *ngIf="this.enlaceForm.get('nombre').invalid">Debe introducir un valor</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="texto">
+        <mat-label>Enlace</mat-label>
+        <input matInput formControlName="enlace" required>
+        <mat-error *ngIf="this.enlaceForm.get('enlace').invalid">Debe introducir un valor</mat-error>
+    </mat-form-field>
+</div>
+<mat-divider></mat-divider>
+<br>
+<button mat-raised-button (click)="onSubmit()" [disabled]="!this.enlaceForm.valid">Guardar</button>
+<button mat-raised-button (click)="limpiar()">Limpiar</button>
