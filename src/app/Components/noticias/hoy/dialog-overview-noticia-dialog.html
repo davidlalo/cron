@@ -1,0 +1,5 @@
+<h1 mat-dialog-title cdkFocusInitial >{{data.noticia.noticia}}</h1>
+<h2 mat-dialog-title>{{data.noticia.entradilla}}</h2>
+<div [innerHTML]="data.noticia.cuerpo"></div>
+<br>
+<button mat-button (click)="onClick()">Cerrar</button>

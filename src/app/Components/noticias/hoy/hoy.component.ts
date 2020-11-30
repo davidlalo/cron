@@ -1,7 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { Noticia } from 'src/app/Interfaces/noticia';
 import { LlamadasService } from '../../../Services/llamadas.service';
 import { Subscription } from 'rxjs';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+export interface DialogData {
+  noticia: Noticia;
+}
 
 @Component({
   selector: 'app-hoy',
@@ -14,7 +19,7 @@ export class HoyComponent implements OnInit {
   panelOpenState = false;
   noticias : Noticia[];
   noticiasSubscription: Subscription;
-  constructor(private llamadas: LlamadasService) { 
+  constructor(private llamadas: LlamadasService, public dialog: MatDialog) { 
     this.noticias = [];
   }
 
@@ -24,16 +29,38 @@ export class HoyComponent implements OnInit {
 
   getNoticias(){
     this.noticiasSubscription = this.llamadas.getNoticias(this.par).subscribe(
-      (response) => {
+      (response:Noticia[]) => {
         this.noticias = response;
-      },
-      (error) => {console.log("Error Lalo: " + error);}
+      }
     )
+  }
+
+  openDialog(element:Noticia): void {
+    const dialogRef = this.dialog.open(DialogOverviewDetalleDialog, {
+      maxHeight: '600px',
+      width: '900px',
+      data: {noticia : element}
+    });
   }
 
   ngOnDestroy(){
     if(!this.noticiasSubscription.closed){
       this.noticiasSubscription.unsubscribe();
     }
+  }
+}
+
+@Component({
+  selector: 'dialog-overview-noticia-dialog',
+  templateUrl: 'dialog-overview-noticia-dialog.html',
+})
+export class DialogOverviewDetalleDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewDetalleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onClick(): void {
+    this.dialogRef.close();
   }
 }
