@@ -14,19 +14,17 @@ export class AuthService {
 
   // store the URL so we can redirect after logging in
   redirectUrl: string;
-  public respuesta : User[];
   loginSubscription: Subscription;
   constructor(private llamadas: LlamadasService) { }
 
   login(loginForm:FormGroup): Observable<boolean> {
     this.loginSubscription = this.llamadas.acces(loginForm.get('usuario').value,loginForm.get('password').value).subscribe(
-      (response:User[]) => {
-        this.respuesta = response;
-        if(this.respuesta.length===0){
+      (response:User) => {
+        if(!response){
           this.isLoggedIn = false;
         }else{
-          this.userLoggedIn = this.respuesta[0];
-          this.isLoggedIn = true;     
+          this.userLoggedIn = response;
+          this.isLoggedIn = true;  
         }
       }
     )

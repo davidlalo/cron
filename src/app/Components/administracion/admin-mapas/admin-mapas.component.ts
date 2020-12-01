@@ -104,6 +104,8 @@ export class AdminMapasComponent implements OnInit {
 
   cambio(sec:string){
     this.seccion = sec;
+    this.mapaForm.setValue({denominacion:'',autores:'',entidad:'',registro_PI:'',deposito:'',
+        registro_FEDO:'',escala:'',tamano:'',ubicacion:'',coordenadas:''});
   }
 
   accion(ac:string,elemento:Mapa){

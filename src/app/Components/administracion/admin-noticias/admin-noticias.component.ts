@@ -91,6 +91,7 @@ export class AdminNoticiasComponent implements OnInit {
 
   cambio(sec:string){
     this.seccion = sec;
+    this.noticiaForm.setValue({noticia:'',entradilla:'',cuerpo:''});
   }
 
   accion(ac:string,elemento:Noticia){

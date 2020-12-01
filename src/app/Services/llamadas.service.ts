@@ -195,4 +195,12 @@ export class LlamadasService {
     this.respuesta = this.http.get(url+params);
     return this.respuesta;
   }
+
+  public changePass = function(id:string,pass:string){
+    const url = this.host + "restapi/password.php";
+    var params = '?id='+id;
+    params = params+'&pass='+pass;
+    this.respuesta = this.http.get(url+params);
+    return this.respuesta;
+  }
 }

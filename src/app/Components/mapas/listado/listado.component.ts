@@ -62,6 +62,7 @@ export class ListadoComponent implements OnInit {
 
   openDialog(element:Mapa): void {
     const dialogRef = this.dialog.open(DialogOverviewDetalleDialog, {
+      maxHeight: 600,
       data: {id : element.idmapa}
     });
   }

@@ -13,8 +13,11 @@ import { Miembro } from 'src/app/Interfaces/miembro';
 })
 export class AdminDatosComponent implements OnInit {
 
+  checked : boolean;
+  hide = true;
   datosSubscription: Subscription;
   updateSubscription: Subscription;
+  changeSubscription: Subscription;
   datosForm = new FormGroup({
     nombre : new FormControl(''),
     nombreC : new FormControl(''),
@@ -22,7 +25,8 @@ export class AdminDatosComponent implements OnInit {
     orden : new FormControl(''),
     categoria : new FormControl(''),
     sportident : new FormControl(''),
-    descripcion : new FormControl('')
+    descripcion : new FormControl(''),
+    password : new FormControl('')
   });
   miembro : Miembro;
 
@@ -46,6 +50,7 @@ export class AdminDatosComponent implements OnInit {
   getMisDatos(){
     this.datosSubscription = this.llamadas.getMiembro(this.authService.userLoggedIn.id).subscribe(
       (response:Miembro) => {
+        this.checked = response.orden==='0'?true:false;
         this.datosForm.setValue({
           nombre:response.nombre,
           nombreC:response.nombre_completo,
@@ -53,7 +58,8 @@ export class AdminDatosComponent implements OnInit {
           orden:response.orden,
           categoria:response.categoria,
           sportident:response.sportident,
-          descripcion:response.descripcion
+          descripcion:response.descripcion,
+          password:''
         });
       }
     )  
@@ -74,7 +80,7 @@ export class AdminDatosComponent implements OnInit {
           this._snackBar.open("Tus datos se han actualizado correctamente", "OK", {
             duration: 2000,
           });
-          
+          this.getMisDatos();
         }else{
           this._snackBar.open("No se han podido actualizar tus datos", "Error", {
             duration: 2000,
@@ -83,12 +89,41 @@ export class AdminDatosComponent implements OnInit {
       }
     )
   }
+
+  cambiarPass(){
+    const id = this.authService.userLoggedIn.idUsuario;
+    const pass = this.datosForm.get('password').value;
+    if(pass != ''){
+      this.updateSubscription = this.llamadas.changePass(id,pass).subscribe(
+        (response:any) => {
+          if(response===0){
+            this._snackBar.open("Tu contraseña se ha actualizado correctamente", "OK", {
+              duration: 2000,
+            });
+            this.getMisDatos();
+          }else{
+            this._snackBar.open("No se ha podido actualizar tu contraseña", "Error", {
+              duration: 2000,
+            });
+          }
+        }
+      )
+    }else{
+      this._snackBar.open("Debe introducir un valor en el campo Nueva contraseña", "Error", {
+        duration: 2000,
+      });
+    }
+  }
+
   ngOnDestroy(){
     if(!this.datosSubscription.closed){
       this.datosSubscription.unsubscribe();
     }
     if(this.updateSubscription!=undefined && !this.updateSubscription.closed){
       this.updateSubscription.unsubscribe();
+    }
+    if(this.changeSubscription!=undefined && !this.changeSubscription.closed){
+      this.changeSubscription.unsubscribe();
     }
   }
 }

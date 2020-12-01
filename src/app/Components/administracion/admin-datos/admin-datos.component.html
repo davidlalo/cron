@@ -13,7 +13,7 @@
         <mat-label>Email</mat-label>
         <input matInput formControlName="correo">
     </mat-form-field>
-    <mat-checkbox formControlName="orden">
+    <mat-checkbox formControlName="orden" [checked]="checked">
         Mostrar correo en listado de Miembros
     </mat-checkbox>
     <br>
@@ -30,8 +30,16 @@
         <mat-label>Descripcion</mat-label>
         <textarea matInput formControlName='descripcion'></textarea>
     </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Nueva contraseña</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+    </mat-form-field>
 </div>
 <mat-divider></mat-divider>
 <br>
 <button mat-raised-button (click)="onSubmit()">Guardar</button>
+<button mat-raised-button (click)="cambiarPass()">Cambiar contraseña</button>
 <br>
