@@ -37,6 +37,9 @@ export class AdminMapasComponent implements OnInit {
     ubicacion : new FormControl('', [Validators.required]),
     coordenadas : new FormControl('', [Validators.required])
   });
+  fileForm = new FormGroup({
+    fileControl : new FormControl('', [Validators.required])
+  });
   map : Mapa;
 
   constructor(private llamadas: LlamadasService, public dialogo: MatDialog, public authService: AuthService, private _snackBar: MatSnackBar) {
@@ -82,6 +85,10 @@ export class AdminMapasComponent implements OnInit {
         this.id = "";
       }
     )
+  }
+
+  cargarMapas(){
+    console.log(this.fileForm.get('fileControl').value);
   }
 
   ngOnDestroy(){

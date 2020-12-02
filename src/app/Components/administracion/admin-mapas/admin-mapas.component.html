@@ -1,6 +1,14 @@
 <h1><b>GESTIÓN DE MAPAS</b></h1>
 <div *ngIf="seccion==='listado'">
     <button mat-raised-button (click)="cambio('nueva')">Nuevo mapa</button>
+    <div [formGroup]="fileForm">
+    <mat-form-field>
+      <ngx-mat-file-input formControlName="fileControl" accept=".xls">
+      </ngx-mat-file-input>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+    <button mat-raised-button (click)="cargarMapas()" [disabled]="!this.fileForm.valid">Cargar mapas</button>
+    </div>
     <br><br><mat-divider></mat-divider><br>
     <mat-form-field>
         <mat-label>Filtro</mat-label>

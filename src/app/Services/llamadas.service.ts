@@ -11,9 +11,9 @@ import { Enlace } from '../Interfaces/enlace';
 })
 export class LlamadasService {
 
-  public host = "";
+  //public host = "";
   //public host = "http://orientacron.es/";
-  //public host = "http://localhost/CRON/";
+  public host = "http://localhost/CRON/";
   public respuesta : any;
   constructor(private http: HttpClient) { }
 

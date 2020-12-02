@@ -15,7 +15,6 @@ import { MaterialModule } from './Modules/material/material.module';
 import { CalendarioComponent } from './Components/home/calendario/calendario.component';
 import { TwitterComponent } from './Components/home/twitter/twitter.component';
 import { FacebookComponent } from './Components/home/facebook/facebook.component';
-import { NoticiasComponent } from './Components/home/noticias/noticias.component';
 import { HomeComponent } from './Views/home/home.component';
 import { BrujulinesComponent } from './Views/brujulines/brujulines.component';
 import { OrientacionComponent } from './Views/orientacion/orientacion.component';
@@ -61,6 +60,7 @@ import { LinksComponent } from './Components/home/links/links.component';
 import { AdminSolicitudesComponent } from './Components/administracion/admin-solicitudes/admin-solicitudes.component';
 import { FootComponent } from './Components/foot/foot.component';
 import { DialogoConfirmacionComponent } from './Components/dialogo-confirmacion/dialogo-confirmacion.component';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
 @NgModule({
   declarations: [
@@ -70,7 +70,6 @@ import { DialogoConfirmacionComponent } from './Components/dialogo-confirmacion/
     CalendarioComponent,
     TwitterComponent,
     FacebookComponent,
-    NoticiasComponent,
     HomeComponent,
     BrujulinesComponent,
     OrientacionComponent,
@@ -124,7 +123,8 @@ import { DialogoConfirmacionComponent } from './Components/dialogo-confirmacion/
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMatFileInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],
