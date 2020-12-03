@@ -25,6 +25,7 @@ export class AdminMapasComponent implements OnInit {
   insertSubscription: Subscription;
   deleteSubscription: Subscription;
   updateSubscription: Subscription;
+  cargarSubscription: Subscription;
   mapaForm = new FormGroup({
     denominacion : new FormControl('', [Validators.required]),
     autores : new FormControl('', [Validators.required]),
@@ -38,7 +39,8 @@ export class AdminMapasComponent implements OnInit {
     coordenadas : new FormControl('', [Validators.required])
   });
   fileForm = new FormGroup({
-    fileControl : new FormControl('', [Validators.required])
+    fileControl : new FormControl('', [Validators.required]),
+    allControl : new FormControl(false)
   });
   map : Mapa;
 
@@ -65,7 +67,7 @@ export class AdminMapasComponent implements OnInit {
 
   displayedColumns: string[] = ['denominacion','autores', 'ent_patroc', 'ubicacion', 'acciones'];
   dataSource = new MatTableDataSource<Mapa>();
-  
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -88,9 +90,28 @@ export class AdminMapasComponent implements OnInit {
   }
 
   cargarMapas(){
-    console.log(this.fileForm.get('fileControl').value);
+    if(this.fileForm.get('allControl').value){
+      this.mostrarDialogo2();
+    }else{
+      this.llamarCarga();
+    }
   }
 
+  llamarCarga(){
+    this.cargarSubscription = this.llamadas.cargarFichero(this.fileForm.get('fileControl').value,
+      this.fileForm.get('allControl').value).subscribe(
+      (response:any) => {
+        this.dialogo.open(DialogoConfirmacionComponent, {
+        data: `Resultado de la operación: `+response.mensaje+'\nMapas insertados correctamente: '+response.numBien+
+        '\nMapas no insertados: '+response.numMal
+      })
+      this.getMapas();
+      },
+      (error:any) => {
+        console.log(error);
+      }
+    )
+  }
   ngOnDestroy(){
     if(!this.mapasSubscription.closed){
       this.mapasSubscription.unsubscribe();
@@ -106,6 +127,9 @@ export class AdminMapasComponent implements OnInit {
     }
     if(this.updateSubscription!=undefined && !this.updateSubscription.closed){
       this.updateSubscription.unsubscribe();
+    }
+    if(this.cargarSubscription!=undefined && !this.cargarSubscription.closed){
+      this.cargarSubscription.unsubscribe();
     }
   }
 
@@ -125,11 +149,11 @@ export class AdminMapasComponent implements OnInit {
             tamano:response.tamano,ubicacion:response.ubicacion,coordenadas:response.coordenadas_GPS});
           this.seccion = "nueva";
         }
-      )     
+      )
     }else{
       this.mostrarDialogo();
     }
-    
+
   }
 
   onSubmit() {
@@ -143,14 +167,14 @@ export class AdminMapasComponent implements OnInit {
     this.map.tamano=this.mapaForm.get('tamano').value;
     this.map.coordenadas_GPS=this.mapaForm.get('coordenadas').value;
     this.map.ubicacion=this.mapaForm.get('ubicacion').value;
-    if(this.id===""){ 
+    if(this.id===""){
       this.insertSubscription = this.llamadas.insertMapa(this.map).subscribe(
         (response:any) => {
           if(response===0){
             this._snackBar.open("El mapa se ha insertado correctamente", "OK", {
               duration: 2000,
             });
-            
+
           }else{
             this._snackBar.open("No se ha podido insertar el mapa", "Error", {
               duration: 2000,
@@ -212,6 +236,32 @@ export class AdminMapasComponent implements OnInit {
           )
           this.id = "";
         }
-      });     
+      });
+  }
+
+  mostrarDialogo2(): void {
+    this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Está seguro de borrar todos los mapas y cargar los del fichero?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.llamarCarga();
+        }
+      });
+  }
+
+  mostrarDialogo3(): void {
+    this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Está seguro de borrar todos los mapas y cargar los del fichero?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.llamarCarga();
+        }
+      });
   }
 }

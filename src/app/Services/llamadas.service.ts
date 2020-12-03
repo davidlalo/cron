@@ -11,9 +11,9 @@ import { Enlace } from '../Interfaces/enlace';
 })
 export class LlamadasService {
 
-  //public host = "";
+  public host = "";
   //public host = "http://orientacron.es/";
-  public host = "http://localhost/CRON/";
+  //public host = "http://localhost/CRON/";
   public respuesta : any;
   constructor(private http: HttpClient) { }
 
@@ -201,6 +201,15 @@ export class LlamadasService {
     var params = '?id='+id;
     params = params+'&pass='+pass;
     this.respuesta = this.http.get(url+params);
+    return this.respuesta;
+  }
+
+  public cargarFichero = function(file:any,todo:any){
+    const url = this.host + "restapi/leer_mapas.php";
+    let fd = new FormData();
+    fd.append('archivo',file);
+    fd.append('borrar',todo);
+    this.respuesta = this.http.post(url,fd);
     return this.respuesta;
   }
 }

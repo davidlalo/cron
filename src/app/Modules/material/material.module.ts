@@ -26,6 +26,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [],
@@ -60,7 +61,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatGridListModule,
     MatTabsModule,
     MatDialogModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSlideToggleModule
     ]
 })
 export class MaterialModule { }
